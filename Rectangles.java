@@ -8,9 +8,10 @@
 import java.awt.Rectangle;
 
 /**
+ * Date: February 14, 2021
  * Class that performs various functions of a rectangle (or two) , such as calculating its area, and perimeter
  * @author radhi
- * February 14, 2021
+ * @version 1.0
  */
 public class Rectangles {
 	//variables for width, height, x and y values of the top right corner, and x and y values of the bottom left corners of a rectangle.
@@ -63,19 +64,6 @@ public class Rectangles {
 		
 	}
 
-	public static void main(String[] args) {
-		Rectangles a = new Rectangles (1,2,10,20);
-		System.out.println("the top corner coordinate is: (" + a.right + ","+a.top+")");
-		Rectangles b = new Rectangles (1,2,10,20);	
-		System.out.println("the top corner coordinate is: (" + b.right + ","+b.top+")");
-		System.out.println(toString(a.left, a.bottom, a.width, a.height));
-		System.out.println(toString(b.left, b.bottom, b.width, b.height));
-		Rectangles hello = intersection(a, b);
-		System.out.println(toString (hello.left, hello.bottom, hello.width, hello.height));
-		System.out.println("the total perimeter is: " + totalPerimeter(a,b));
-		
-		System.out.println(a.contains(b));
-	}
 	/**
 	 * method returns the information provided about the rectangle in one sentence/String
 	 * @param left the x coordinate of the bottom left corner
@@ -166,6 +154,7 @@ public class Rectangles {
 	 */
 	public static int totalPerimeter(Rectangles a, Rectangles b) {
 		//if the rectangles are on top of each other, then return the perimeter of one of the rectangles
+		
 		if (a.onTop(b)) {
 			return (a.perimeter(a.width,a.height));
 		}
@@ -173,7 +162,7 @@ public class Rectangles {
 		if (!(overlap(a, b))) {
 			return ((a.perimeter(a.width,a.height))+(b.perimeter(b.width,b.height)));
 		}
-		//otherwise, see where they intersect, then subtract the perimeter of the interected rectangle from the sum of the perimeters of each rectangle
+		//otherwise, see where they intersect, then subtract the perimeter of the intersected rectangle from the sum of the perimeters of each rectangle
 		Rectangles perim = intersection (a,b);
 		return ((a.perimeter(a.width, a.height))+(b.perimeter(b.width, b.height)))-(perim.perimeter(perim.width, perim.height));
 	}
