@@ -22,6 +22,20 @@ public class Rectangles {
 	int right;
 	int top;
 	
+	public static void main(String[] args) {
+		Rectangles a = new Rectangles (1,1,3,2);
+		System.out.println("the top corner coordinate is: (" + a.right + ","+a.top+")");
+		Rectangles b = new Rectangles (3,2,1,2);	
+		System.out.println("the top corner coordinate is: (" + b.right + ","+b.top+")");
+		System.out.println(toString(a.left, a.bottom, a.width, a.height));
+		System.out.println(toString(b.left, b.bottom, b.width, b.height));
+		Rectangles hello = intersection(a, b);
+		System.out.println(toString (hello.left, hello.bottom, hello.width, hello.height));
+		System.out.println("the total perimeter is: " + totalPerimeter(a,b));
+		
+		System.out.println(a.contains(b));
+	}
+	
 	/**
 	 * constructor takes any negative value and makes it equal to zero. then uses that values given to find the top right corner of the rectangle
 	 * sets all the instance variables for the specific rectangle into the parameter given
@@ -162,7 +176,7 @@ public class Rectangles {
 		if (!(overlap(a, b))) {
 			return ((a.perimeter(a.width,a.height))+(b.perimeter(b.width,b.height)));
 		}
-		//otherwise, see where they intersect, then subtract the perimeter of the intersected rectangle from the sum of the perimeters of each rectangle
+		//otherwise, see where they intersect, then subtract the perimeter of the interected rectangle from the sum of the perimeters of each rectangle
 		Rectangles perim = intersection (a,b);
 		return ((a.perimeter(a.width, a.height))+(b.perimeter(b.width, b.height)))-(perim.perimeter(perim.width, perim.height));
 	}
